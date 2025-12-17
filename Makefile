@@ -21,6 +21,25 @@ storages-down:
 postgres:
 	${EXEC} ${DB_CONTAINER} psql -U postgres
 
+.PHONY: create-db
+create-db:
+	@if [ -f ${ENV_FILE} ]; then \
+		DB_NAME=$$(grep "^POSTGRES_DB=" ${ENV_FILE} | cut -d '=' -f2 | tr -d ' ' | tr -d '"'); \
+		if [ -z "$$DB_NAME" ]; then \
+			echo "Error: POSTGRES_DB not found in ${ENV_FILE}"; \
+			exit 1; \
+		fi; \
+		echo "Checking if database '$$DB_NAME' exists..."; \
+		if docker exec ${DB_CONTAINER} psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$$DB_NAME'" | grep -q 1; then \
+			echo "Database '$$DB_NAME' already exists"; \
+		else \
+			docker exec ${DB_CONTAINER} psql -U postgres -c "CREATE DATABASE $$DB_NAME" && echo "Database '$$DB_NAME' created successfully"; \
+		fi; \
+	else \
+		echo "Error: ${ENV_FILE} not found"; \
+		exit 1; \
+	fi
+
 .PHONY: storages-logs
 storages-logs: 
 	${LOGS} ${DB_CONTAINER} -f
