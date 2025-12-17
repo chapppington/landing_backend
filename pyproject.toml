@@ -1,0 +1,23 @@
+[project]
+name = "landing-backend"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "chapppington",email = "stas.mega.96@bk.ru"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "django (>=6.0,<7.0)",
+    "django-environ (>=0.12.0,<0.13.0)",
+    "psycopg2-binary (>=2.9.11,<3.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.5.1"
+
