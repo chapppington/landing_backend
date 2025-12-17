@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "core.apps.registrations.apps.RegistrationsConfig",
+    "core.apps.speakers.apps.SpeakersConfig",
+    "core.apps.program.apps.ProgramConfig",
 ]
 
 MIDDLEWARE = [
@@ -116,6 +118,10 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
+
+# Media files (user uploads)
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

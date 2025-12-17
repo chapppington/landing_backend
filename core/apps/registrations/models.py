@@ -20,19 +20,16 @@ class RegistrationsModel(models.Model):
         blank=True,
         null=True,
         verbose_name="Комментарий",
-        help_text="Дополнительные комментарии от участника",
     )
 
     consent = models.BooleanField(
         default=False,
         verbose_name="Согласие на обработку данных",
-        help_text="Согласие на обработку персональных данных",
     )
 
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Дата регистрации",
-        help_text="Дата и время регистрации",
     )
 
     class Meta:
