@@ -36,7 +36,7 @@ class PartnershipModel(models.Model):
 
     class Meta:
         db_table = "partnership"
-        verbose_name = "Карточка"
+        verbose_name = "Карточка партнерства"
         verbose_name_plural = "Карточки"
         ordering = ["order", "title"]
 

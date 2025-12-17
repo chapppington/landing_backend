@@ -28,7 +28,7 @@ class AboutModel(models.Model):
 
     class Meta:
         db_table = "about"
-        verbose_name = "Карточка"
+        verbose_name = "Карточка о конференции"
         verbose_name_plural = "Карточки"
         ordering = ["order", "title"]
 

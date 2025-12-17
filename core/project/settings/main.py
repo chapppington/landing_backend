@@ -130,3 +130,51 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Email configuration
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = env.get_value("EMAIL_HOST", default="smtp.gmail.com")
+EMAIL_PORT = env.get_value("EMAIL_PORT", default=587)
+EMAIL_USE_TLS = env.get_value("EMAIL_USE_TLS", default=True)
+EMAIL_USE_SSL = env.get_value("EMAIL_USE_SSL", default=False)
+EMAIL_HOST_USER = env.get_value("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env.get_value("EMAIL_HOST_PASSWORD", default="")
+DEFAULT_FROM_EMAIL = env.get_value("DEFAULT_FROM_EMAIL", default=EMAIL_HOST_USER)
+
+# Logging configuration
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "core.apps.registrations": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
+}
