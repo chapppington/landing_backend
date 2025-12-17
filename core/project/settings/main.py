@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "core.apps.speakers.apps.SpeakersConfig",
     "core.apps.program.apps.ProgramConfig",
     "core.apps.previous_meetings.apps.PreviousMeetingsConfig",
+    "core.apps.about.apps.AboutConfig",
+    "core.apps.partnership.apps.PartnershipConfig",
 ]
 
 MIDDLEWARE = [
